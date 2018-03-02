@@ -1,8 +1,10 @@
 source 'https://rubygems.org'
 
+ ruby '2.5.0'
+
  git_source(:github) do |repo_name|
    repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-   "https://github.com/#{repo_name}.git"
+   "https://github.com/#{hstetts}.git"
  end
 
  # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -35,17 +37,21 @@ source 'https://rubygems.org'
 
  gem 'thor', '0.19.1'
 
- group :development do
-   gem 'listen', '~> 3.0.5'
- end
-
  gem 'bootstrap-sass'
-
- group :development, :test do
-   gem 'rspec-rails', '~> 3.0'
-   gem 'rails-controller-testing'
- end
 
  gem 'devise'
 
  gem 'figaro', '1.0'
+
+ gem "pundit"
+
+ group :development do
+   gem 'sqlite3'
+   gem 'listen', '~> 3.0.5'
+ end
+
+ group :development, :test do
+   gem 'rspec-rails', '~> 3.0'
+   gem 'rails-controller-testing'
+   gem 'shoulda'
+ end
