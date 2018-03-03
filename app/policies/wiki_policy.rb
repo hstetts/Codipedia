@@ -22,11 +22,13 @@ class WikiPolicy < ApplicationPolicy
    true
   end
 
+  def destroy?
+   true
+  end
 
-#
-#   def update?
-#     @user && @user.wiki == @wiki
-#   end
+  # def update?
+  #    @user.present? && @user == record.user
+  # end
 #
 #   def edit?
 #     @user && @user.wiki == @wiki
@@ -36,6 +38,5 @@ class WikiPolicy < ApplicationPolicy
 #     @user && @user.wiki == @wiki
 #   end
 #
-#
-#
+
 end

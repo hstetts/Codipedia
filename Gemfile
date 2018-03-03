@@ -43,7 +43,7 @@ source 'https://rubygems.org'
 
  gem 'figaro', '1.0'
 
- gem "pundit"
+ gem 'pundit'
 
  group :development do
    gem 'sqlite3'
