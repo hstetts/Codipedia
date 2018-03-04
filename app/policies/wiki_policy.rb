@@ -1,11 +1,5 @@
 class WikiPolicy < ApplicationPolicy
 
- # class Scope < Scope
- #   def resolve
- #     scope
- #   end
- # end
-
   def index?
     true
   end
@@ -23,20 +17,15 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def destroy?
-   true
+    record.user == user
   end
 
-  # def update?
-  #    @user.present? && @user == record.user
-  # end
-#
-#   def edit?
-#     @user && @user.wiki == @wiki
-#   end
-#
-#   def destroy?
-#     @user && @user.wiki == @wiki
-#   end
-#
+  def update?
+    destroy?
+  end
+
+  def edit?
+    destroy?
+  end
 
 end
