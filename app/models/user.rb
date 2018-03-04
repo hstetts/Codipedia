@@ -7,10 +7,11 @@ class User < ApplicationRecord
   has_many :wikis
 
   enum role: [:standard, :premium, :admin]
-  
+  after_initialize :set_default_role
+
 
   def set_default_role
-    self.role ||= :user
+    self.role ||= :standard
   end
 
 
