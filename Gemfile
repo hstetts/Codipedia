@@ -21,6 +21,7 @@ gem 'devise'
 gem 'figaro', '1.0'
 gem 'pundit'
 gem 'faker'
+gem 'stripe'
 
 group :production do
  gem 'pg'
