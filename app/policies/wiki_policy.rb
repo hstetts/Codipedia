@@ -21,11 +21,11 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def update?
-    destroy?
+    edit?
   end
 
   def edit?
-    destroy?
+    !record.private?
   end
 
 end
