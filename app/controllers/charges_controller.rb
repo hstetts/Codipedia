@@ -1,20 +1,13 @@
 class ChargesController < ApplicationController
 
   def new
-    if current_user.premium?
-      flash[:notice] = "Your account has been downgraded from Premium to Standard"
-      current_user.role = :standard
-      current_user.save!
-      redirect_to root_path
-
-    else
-      @stripe_btn_data = {
-        key: "#{ Rails.configuration.stripe[:publishable_key] }",
-        description: "Premium Membership - #{current_user.email}",
-        amount: 15_00
-      }
-    end
+   @stripe_btn_data = {
+     key: "#{ Rails.configuration.stripe[:publishable_key] }",
+     description: "Premium Membership - #{current_user.email}",
+     amount: 15_00
+  }
   end
+
 
 
   def create
@@ -42,4 +35,11 @@ class ChargesController < ApplicationController
      flash[:alert] = e.message
      redirect_to new_charge_path
   end
+
+  def downgrade
+   current_user.standard!
+   flash[:notice] = "Your account has been downgraded from Premium to Standard"
+   redirect_to root_path
+  end
+
 end
