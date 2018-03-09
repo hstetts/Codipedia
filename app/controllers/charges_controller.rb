@@ -22,12 +22,12 @@ class ChargesController < ApplicationController
      description: "Upgrade to Premium Membership - #{current_user.email}",
      currency: 'usd'
    )
-
-   current_user.role = :premium
-   current_user.save!
-   flash[:notice] = "Congrats, #{current_user.email}! You are now a Premium User!"
-   redirect_to root_path
-
+   if charge.paid
+     current_user.premium!
+     current_user.save!
+     flash[:notice] = "Congrats, #{current_user.email}! You are now a Premium User!"
+     redirect_to root_path
+   end
    # Stripe will send back CardErrors, with friendly messages
    # when something goes wrong.
    # This `rescue block` catches and displays those errors.
@@ -37,8 +37,10 @@ class ChargesController < ApplicationController
   end
 
   def downgrade
+   current_user.wikis.where(private: true).update_all(private: false)
    current_user.standard!
    flash[:notice] = "Your account has been downgraded from Premium to Standard"
+   flash[:notice] = "Your private wikis have now become public"
    redirect_to root_path
   end
 

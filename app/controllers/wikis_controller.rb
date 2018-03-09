@@ -3,8 +3,8 @@ class WikisController < ApplicationController
 
 
   def index
-    @wikis = Wiki.all
-    authorize @wikis
+    @public_wikis = Wiki.where(private: false)
+    authorize @public_wikis
   end
 
   def show
