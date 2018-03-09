@@ -21,7 +21,7 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def update?
-    edit?
+    user.present?
   end
 
   def edit?
