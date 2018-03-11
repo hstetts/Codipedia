@@ -6,9 +6,12 @@ Rails.application.routes.draw do
   authenticated :user do
     root "wikis#index", as: :authenticated_root
   end
-  root 'welcome#index'
 
-  resources :wikis
+  resources :wikis do
+    resources :collaborators, only: [:create, :destroy, :index]
+  end
+
+  root 'welcome#index'
 
   resources :charges, only: [:new, :create, :downgrade]
     get "downgrade", to: "charges#downgrade"
