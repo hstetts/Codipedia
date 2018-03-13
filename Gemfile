@@ -23,6 +23,7 @@ gem 'pundit'
 gem 'faker'
 gem 'stripe'
 gem 'redcarpet'
+gem 'simple_form'
 
 group :production do
  gem 'pg'
