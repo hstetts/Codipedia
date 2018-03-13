@@ -15,8 +15,12 @@
  </div>
 
 <h2> Collaborators: </h2>
+<small>
 <h4> Current Collaborators: </h4>
-
+  <% @wiki.users.each do |f| %>
+   <p><%= f.email %></p>
+  <% end %>
+</small>
 <div class="row">
  <div class="col-md-4">
    <h3> Add Collaborators: </h3>

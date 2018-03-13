@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :wikis
   has_many :collaborators
-  has_many :wikis, through: :collaborators
+  has_many :wikis, through: :collaborators, source: :wiki
 
   enum role: [:standard, :premium, :admin]
   after_initialize :set_default_role
