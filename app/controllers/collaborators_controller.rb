@@ -10,7 +10,7 @@ class CollaboratorsController < ApplicationController
   def create
     @user = User.find_by_email(params[:collaborator])
     @wiki = Wiki.find(params[:wiki_id])
-    
+
 
     if @wiki.collaborators.exists?(user_id: @user.id)
       flash[:notice] = "User is already a collaborator."
@@ -26,7 +26,6 @@ class CollaboratorsController < ApplicationController
     end
     end
   end
-
 
 
   def destroy

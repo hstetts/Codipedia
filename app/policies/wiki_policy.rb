@@ -1,20 +1,6 @@
 class WikiPolicy < ApplicationPolicy
 
-  # def index?
-  #   user.present?
-  # end
-  #
-  # def create?
-  #   true
-  # end
-  #
-  # def new?
-  #   create?
-  # end
-  #
-  # def show?
-  #   true
-  # end
+
 
   def destroy?
     record.user == user
@@ -23,10 +9,6 @@ class WikiPolicy < ApplicationPolicy
   def update?
     user.present?
   end
-
-  # def edit?
-  #   !record.private?
-  # end
 
   class Scope
      attr_reader :user, :scope
