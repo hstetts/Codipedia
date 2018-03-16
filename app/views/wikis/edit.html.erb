@@ -1,37 +1,37 @@
 <h1>Edit Wiki </h1>
 
 <div class="row">
- <div class="col-md-4">
-   <p>Guidelines for Wikis:</p>
-   <ul>
-     <li>Share your code discoveries.</li>
-     <li>Add some snippets.</li>
-     <li>The incessant use of hashtags will get you banned.</li>
-   </ul>
- </div>
- <div class="col-md-8">
-  <%= render "form" %>
- </div>
- </div>
-
-<h2> Collaborators: </h2>
-<small>
-<h4> Current Collaborators: </h4>
-  <% @wiki.users.each do |f| %>
-   <p><%= f.email %></p>
-  <% end %>
-</small>
-<div class="row">
- <div class="col-md-4">
-   <h3> Add Collaborators: </h3>
-   <% if current_user.admin? || current_user.premium? %>
-    <%= render partial: 'users/form' %>
-   <% end %>
- </div>
- <div class="col-md-4">
-   <h3> Remove Collaborators: </h3>
-   <!-- <% if current_user.admin? || current_user.premium? %>
-    <%= render partial: 'users/form' %>
-   <% end %> -->
- </div>
+<div class="col-md-4">
+ <p>Guidelines for Wikis:</p>
+ <ul>
+   <li>Share your code discoveries.</li>
+   <li>Add some snippets.</li>
+   <li>The incessant use of hashtags will get you banned.</li>
+ </ul>
 </div>
+<div class="col-md-8">
+<%= render "form" %>
+</div>
+</div>
+
+
+<% if @wiki.private? && (current_user.admin? || @wiki.user_id == current_user.id) %>
+<h2> Collaborators: </h2>
+<div class="row">
+<small>
+<div class="col-md-4">
+<h3> Add Collaborators: </h3>
+  <%= render partial: 'users/form' %>
+<h3> Current Collaborators: </h3>
+<ul class="current-collabs">
+ <% @wiki.collaborators.each do |collaborator| %>
+  <li>
+   <%= User.find_by_id(collaborator.user_id).email %>
+   <%= link_to "X", wiki_collaborator_path(@wiki, collaborator), class: 'btn btn-danger btn-xs', method: :delete, data: {confirm: 'Are you sure you want to delete this wiki?'}%>
+  </li>
+ <% end %>
+</ul>
+</div>
+</small>
+</div>
+<% end %>

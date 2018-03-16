@@ -1,7 +1,7 @@
 <div class="form-group">
   <%= form_for [@wiki, Collaborator.new] do |f| %>
     <%= email_field_tag :collaborator %>
-    <%= f.submit "Add collaborator", class: 'btn btn-primary' %>
+    <%= f.submit "Add collaborator", class: 'btn btn-primary btn-sm' %>
   <% end %>
-    
+
 </div>
